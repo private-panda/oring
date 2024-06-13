@@ -275,8 +275,6 @@ void partyOringT1(int n, int t, int m, int party_idx, int topology, int net){
         std::vector<u8> send_buffer(okvs_table_size*output_byte_length);
         u8 *send_buffer_ptr = send_buffer.data();
         for(int i=0; i<okvs_table_size; i++){
-            // share_sums[i] ^= (receiver_oprf_values[i] ^ sender_oprf_values[i]);
-            // tmp_result = receiver_oprf_values[i] ^ sender_oprf_values[i];
             std::memcpy(send_buffer_ptr, (u8 *)&paxos.table[i], output_byte_length);
             send_buffer_ptr += output_byte_length;
         }
