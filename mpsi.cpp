@@ -220,8 +220,8 @@ void party(int n, int t, int m, int party_idx, int topology, int net){
             std::vector<std::vector<oc::block>> masks(n-t);
             auto mask_worker = [&](int i){
                 masks[i].resize(m);
+                AES aes(mask_seeds[i]);
                 cp::sync_wait(chls[i].send(mask_seeds[i]));
-                aes.setKey(mask_seeds[i]);
                 aes.ecbEncBlocks(party_set, masks[i]);
                 // std::cout<<std::endl<<"Party "<<party_idx<<" with "<<i<<" a mask: "<<masks[i][0]<<std::endl;
             };
